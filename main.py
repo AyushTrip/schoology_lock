@@ -29,14 +29,28 @@ class Session:
         
    def enter_credentials(self):
     
-   #Send the payload of username and password information
-   for time in lock_list:
+        #Enter credentials seven times
         search = self.driver.find_element_by_id("username")
         search.send_keys(USERNAME)
         search = self.driver.find_element_by_id("password")
-        search.send_keys(PASSWORD)
-        search.send_keys(Keys.RETURN)
-        time.sleep(x)
+        
+        #Send the payload of username and password information
+        
+        for i in range(6):
+          search.send_keys(PASSWORD)
+          search.send_keys(Keys.RETURN)
+          
+        #Send password twice
+        for time in lock_list:
+        
+              search.send_keys(PASSWORD)
+              search.send_keys(Keys.RETURN)
+        
+              search.send_keys(PASSWORD)
+              search.send_keys(Keys.RETURN)
+        
+              #Sleep for the lockout
+              time.sleep(time)
    
 def main():
   grading_session = Session()
